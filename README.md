@@ -42,4 +42,5 @@ Please check [wiki](https://github.com/php-core/laravel-madeline-proto/wiki) for
 # Thanks To
 
 [setiawanhu](https://github.com/setiawanhu) for the base version this package is based on
+
 [Bryan Ramaputra](https://github.com/Ordinal43) for helping me to write readable documentations.  
