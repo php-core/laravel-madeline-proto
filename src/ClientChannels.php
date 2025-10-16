@@ -173,4 +173,68 @@ class ClientChannels
 
         return new TelegramObject($this->channels->inviteToChannel(channel: $channel, users: [$user], fwd_limit: $fwd_limit));
     }
+
+    /**
+     * Makes a user an admin in a channel/supergroup.
+     *
+     * @param mixed $channel The channel to make the user an admin in.
+     * @param mixed $user The user to make an admin.
+     * @param array $params Other parameters for the admin rights.
+     * @return TelegramObject Updates
+     */
+    public function editAdmin(mixed $channel, mixed $user, array $params = [], string $rank = ''): TelegramObject
+    {
+        if ($channel instanceof TelegramObject) {
+            $channel = $channel->toArray();
+        } else if (is_string($channel) || is_numeric($channel)) {
+            $channel = $this->getInfo($channel);
+        }
+
+        if ($user instanceof TelegramObject) {
+            $user = $user->toArray();
+        }
+
+        $defaultParams = [
+            'can_edit' => true,
+            'can_post' => true,
+            'can_invite' => true,
+            'can_promote' => true,
+            'can_change_info' => true,
+            'can_delete_messages' => true,
+            'can_pin_messages' => true,
+            'can_manage_call' => true,
+            'can_restrict_members' => true,
+            'can_post_stories' => true,
+            'can_edit_stories' => true,
+            'can_delete_stories' => true,
+            'anonymous' => true,
+        ];
+
+        $params = array_merge($defaultParams, $params);
+
+        $adminRights = ['_' => 'chatAdminRights',
+            'change_info' => $params['can_change_info'],
+            'post_messages' => $params['can_post'],
+            'edit_messages' => $params['can_edit'],
+            'delete_messages' => $params['can_delete_messages'],
+            'ban_users' => $params['can_restrict_members'],
+            'invite_users' => $params['can_invite'],
+            'pin_messages' => $params['can_pin_messages'],
+            'manage_call' => $params['can_manage_call'],
+            'post_stories' => $params['can_post_stories'],
+            'edit_stories' => $params['can_edit_stories'],
+            'delete_stories' => $params['can_delete_stories'],
+            'add_admins' => $params['can_promote'],
+            'anonymous' => $params['anonymous'] ?? false,
+        ];
+
+        $newParams = [
+            'channel' => $channel,
+            'user_id' => $user,
+            'admin_rights' => $adminRights,
+            'rank' => $rank
+        ];
+
+        return new TelegramObject($this->channels->editAdmin(...$newParams));
+    }
 }
