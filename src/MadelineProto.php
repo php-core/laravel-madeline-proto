@@ -148,6 +148,16 @@ class MadelineProto
      */
     public function messages(): ClientMessages
     {
-        return new ClientMessages($this->client->messages);
+        return new ClientMessages($this->client);
+    }
+
+     /**
+     * Get MadelineProto Channel API wrapper instance.
+     *
+     * @return ClientChannels
+     */
+    public function channels(): ClientChannels
+    {
+        return new ClientChannels($this->client);
     }
 }

@@ -3,6 +3,8 @@
 namespace PHPCore\MadelineProto;
 
 use danog\MadelineProto\messages;
+use danog\MadelineProto\API;
+use danog\MadelineProto\Namespace\AbstractAPI;
 
 class ClientMessages
 {
@@ -12,13 +14,19 @@ class ClientMessages
     private $messages;
 
     /**
+     * @var API
+     */
+    private $madelineProto;
+
+    /**
      * ClientMessage constructor.
      *
-     * @param messages $messages
+     * @param API $madelineProto
      */
-    public function __construct($messages)
+    public function __construct(API $madelineProto)
     {
-        $this->messages = $messages;
+        $this->messages = $madelineProto->messages;
+        $this->madelineProto = $madelineProto;
     }
 
     /**
@@ -517,13 +525,13 @@ class ClientMessages
 
         return new TelegramObject($this->messages->getHistory($payload));
     }
-
+    
     /**
      * Get Client messages instance.
      *
      * @return messages messages APIFactory.
      */
-    public function getMessages(): messages
+    public function getMessages(): messages|AbstractAPI
     {
         return $this->messages;
     }

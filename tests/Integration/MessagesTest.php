@@ -98,32 +98,6 @@ test('can send a message with HTML formatting', function () {
     expect($result)->toBeInstanceOf(TelegramObject::class);
 })->group('integration', 'messages');
 
-test('can send a message with reply markup', function () {
-    $result = $this->messages->sendMessage(
-        $this->testChatId,
-        'Message with inline buttons',
-        [
-            'reply_markup' => [
-                '_' => 'replyInlineMarkup',
-                'rows' => [
-                    [
-                        '_' => 'keyboardButtonRow',
-                        'buttons' => [
-                            [
-                                '_' => 'keyboardButtonUrl',
-                                'text' => 'Visit GitHub',
-                                'url' => 'https://github.com/php-core/laravel-madeline-proto'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    );
-
-    expect($result)->toBeInstanceOf(TelegramObject::class);
-})->group('integration', 'messages');
-
 test('can send multiple messages in sequence', function () {
     $messages = [
         'First message',

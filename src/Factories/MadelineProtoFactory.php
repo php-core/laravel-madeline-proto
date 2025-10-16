@@ -3,6 +3,7 @@
 namespace PHPCore\MadelineProto\Factories;
 
 use danog\MadelineProto\API;
+use danog\MadelineProto\channels as ChannelsClient;
 use PHPCore\MadelineProto\MadelineProto;
 use Illuminate\Database\Connection;
 use Illuminate\Database\DatabaseManager;
@@ -74,8 +75,9 @@ class MadelineProtoFactory
         $settings = $this->convertConfigToSettings($config);
 
         $client = new API(storage_path("app/telegram/$sessionFile"), $settings);
+        $channels = new ChannelsClient(storage_path("app/telegram/$sessionFile"), $settings);
 
-        return new MadelineProto($client);
+        return new MadelineProto($client, $channels);
     }
 
     /**
