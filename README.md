@@ -2,9 +2,10 @@
 [![Latest Stable Version](https://poser.pugx.org/php-core/laravel-madeline-proto/v)](//packagist.org/packages/php-core/laravel-madeline-proto)
 [![Total Downloads](https://poser.pugx.org/php-core/laravel-madeline-proto/downloads)](//packagist.org/packages/php-core/laravel-madeline-proto)
 [![License](https://poser.pugx.org/php-core/laravel-madeline-proto/license)](//packagist.org/packages/php-core/laravel-madeline-proto)
+[![Tests](https://github.com/php-core/laravel-madeline-proto/actions/workflows/tests.yml/badge.svg)](https://github.com/php-core/laravel-madeline-proto/actions/workflows/tests.yml)
 
 A third party Telegram client library [danog/MadelineProto](https://github.com/danog/MadelineProto) wrapper for Laravel.
-Updated to Support latest MadelineProto and PHP 8.4 by PHPCore
+Updated to support latest MadelineProto and PHP 8.4 by PHPCore
 
 # Getting Started
 
@@ -32,6 +33,16 @@ This wrapper package supports for running both [single](https://github.com/php-c
 ## Dig Deeper
 
 Please check [wiki](https://github.com/php-core/laravel-madeline-proto/wiki) for more details about laravel-madeline-proto usage
+
+# Testing
+
+This package uses Pest PHP for testing. To run the test suite:
+
+```bash
+composer test
+```
+
+For more details on testing, see [TESTING.md](TESTING.md).
 
 # Notes
 
