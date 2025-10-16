@@ -16,6 +16,9 @@ use PHPCore\MadelineProto\Tests\TestCase;
 pest()->extend(TestCase::class)
     ->in('Unit', 'Feature');
 
+// Integration tests don't extend Laravel TestCase
+pest()->in('Integration');
+
 /*
 |--------------------------------------------------------------------------
 | Expectations

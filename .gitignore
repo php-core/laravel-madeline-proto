@@ -5,3 +5,10 @@ composer.lock
 build/
 .idea
 .vscode
+.env
+.env.testing
+storage/app/telegram/
+*.madeline
+*.madeline.lock
+manual-tests/MadelineProto.log
+MadelineProto.log

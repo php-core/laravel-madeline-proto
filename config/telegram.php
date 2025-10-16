@@ -36,29 +36,32 @@ return [
     | Madeline Proto Settings
     |--------------------------------------------------------------------------
     |
-    | An array that contains some other arrays, which are the settings for
-    | a specific MadelineProto function.
+    | Settings for MadelineProto. These are converted internally to MadelineProto's
+    | Settings object for compatibility with MadelineProto v8+.
     |
-    | Please see documentations for more details.
+    | For more configuration options, see:
+    | https://docs.madelineproto.xyz/docs/SETTINGS.html
     |
     */
 
     'settings' => [
 
         'logger' => [
-
+            // Logger type: FILE_LOGGER (2), STDOUT_LOGGER (1), NO_LOGGER (0)
             'logger' => Logger::FILE_LOGGER,
 
+            // Logger output path (for FILE_LOGGER)
             'logger_param' => env('MP_LOGGER_PATH', storage_path('logs/madeline_proto_' . date('dmY') . '.log')),
 
+            // Logger level: ULTRA_VERBOSE (5), VERBOSE (4), NOTICE (3), WARNING (2), ERROR (1), FATAL_ERROR (0)
+            'logger_level' => env('MP_LOGGER_LEVEL', Logger::NOTICE),
         ],
 
         'app_info' => [
-
+            // Get these from https://my.telegram.org/apps
             'api_id' => env('MP_TELEGRAM_API_ID', ''),
 
             'api_hash' => env('MP_TELEGRAM_API_HASH', ''),
-
         ],
     ],
 ];

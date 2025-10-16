@@ -36,13 +36,36 @@ Please check [wiki](https://github.com/php-core/laravel-madeline-proto/wiki) for
 
 # Testing
 
-This package uses Pest PHP for testing. To run the test suite:
+## Automated Testing
+
+This package uses Pest PHP for automated testing. To run the test suite:
 
 ```bash
 composer test
 ```
 
-For more details on testing, see [TESTING.md](TESTING.md).
+For more details on automated testing, see [TESTING.md](TESTING.md).
+
+## Manual Testing with Telegram
+
+To test the package with actual Telegram API connections locally:
+
+1. Copy `.env.example` to `.env` and add your credentials
+2. Run the test script: `php test-telegram.php`
+3. Send test messages: `php test-send-message.php "Hello!"`
+
+For detailed instructions, see [MANUAL_TESTING.md](MANUAL_TESTING.md).
+
+### Integration Tests
+
+Run integration tests that interact with real Telegram API:
+
+```bash
+export MP_INTEGRATION_TESTS=true
+vendor/bin/pest tests/Integration
+```
+
+These tests will send actual messages to the chat ID configured in `MP_TEST_CHAT_ID` (defaults to "me" for Saved Messages).
 
 # Notes
 

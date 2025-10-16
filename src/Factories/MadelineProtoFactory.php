@@ -70,8 +70,49 @@ class MadelineProtoFactory
             $config = config('telegram.settings');
         }
 
-        $client = new API(storage_path("app/telegram/$sessionFile"), $config);
+        // Convert old array config to new Settings object
+        $settings = $this->convertConfigToSettings($config);
+
+        $client = new API(storage_path("app/telegram/$sessionFile"), $settings);
 
         return new MadelineProto($client);
+    }
+
+    /**
+     * Convert legacy array config to MadelineProto Settings object.
+     *
+     * @param array $config
+     * @return \danog\MadelineProto\Settings
+     */
+    private function convertConfigToSettings(array $config): \danog\MadelineProto\Settings
+    {
+        $settings = new \danog\MadelineProto\Settings();
+
+        // App Info
+        if (isset($config['app_info'])) {
+            $appInfo = $settings->getAppInfo();
+            if (isset($config['app_info']['api_id'])) {
+                $appInfo->setApiId((int)$config['app_info']['api_id']);
+            }
+            if (isset($config['app_info']['api_hash'])) {
+                $appInfo->setApiHash($config['app_info']['api_hash']);
+            }
+        }
+
+        // Logger
+        if (isset($config['logger'])) {
+            $logger = $settings->getLogger();
+            if (isset($config['logger']['logger'])) {
+                $logger->setType($config['logger']['logger']);
+            }
+            if (isset($config['logger']['logger_param'])) {
+                $logger->setExtra($config['logger']['logger_param']);
+            }
+            if (isset($config['logger']['logger_level'])) {
+                $logger->setLevel($config['logger']['logger_level']);
+            }
+        }
+
+        return $settings;
     }
 }

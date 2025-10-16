@@ -30,10 +30,11 @@ vendor/bin/pest --filter="telegram object"
 
 ## Test Structure
 
-Tests are organized into two main directories:
+Tests are organized into three main directories:
 
 - **`tests/Unit/`** - Unit tests for individual classes and components
 - **`tests/Feature/`** - Feature tests for Laravel integration and service provider
+- **`tests/Integration/`** - Integration tests with actual Telegram API (requires authentication)
 
 ### Unit Tests
 
@@ -49,6 +50,22 @@ Feature tests cover:
 - Service Provider registration
 - Configuration loading
 - Laravel integration
+
+### Integration Tests
+
+Integration tests cover:
+- Sending messages to Telegram
+- Message formatting (Markdown, HTML)
+- Authentication verification
+- Client interaction
+
+**Note:** Integration tests are disabled by default. To run them:
+1. Authenticate first: `php test-telegram.php`
+2. Configure `MP_TEST_CHAT_ID` in `.env`
+3. Enable tests: `export MP_INTEGRATION_TESTS=true`
+4. Run: `vendor/bin/pest tests/Integration`
+
+See [MANUAL_TESTING.md](MANUAL_TESTING.md) for details.
 
 ## Writing Tests
 
