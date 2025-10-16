@@ -207,7 +207,7 @@ class ClientChannels
             'can_post_stories' => true,
             'can_edit_stories' => true,
             'can_delete_stories' => true,
-            'anonymous' => true,
+            'anonymous' => false,
         ];
 
         $params = array_merge($defaultParams, $params);
