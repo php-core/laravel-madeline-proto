@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": "^8.4",
-        "danog/madelineproto": "^8",
+        "danog/madelineproto": "^8.6",
         "illuminate/support": "*",
         "illuminate/console": "*",
         "illuminate/database": "*"
